@@ -5,8 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\AdminResetPasswordNotification;
+use App\Notifications\AdminVerifyEmailNotifiction;
 
-class Admin extends Authenticatable
+
+class Admin extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -36,4 +39,25 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new AdminVerifyEmailNotifiction);
+    }
+    
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new AdminResetPasswordNotification($token));
+    }
+
+
+    public function role()
+    {
+        return $this->belongsToMany(Role::class, 'role_admins');
+    }
 }

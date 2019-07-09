@@ -42,8 +42,6 @@
         </nav>
 
         <main class="container">
-            <!-- <adminlogin></adminlogin>
-            <adminregister></adminregister> -->
             @yield('content')
         </main>
     </div>

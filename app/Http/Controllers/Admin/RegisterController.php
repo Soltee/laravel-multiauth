@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Notifications\AdminRegistered;
-    
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -66,11 +68,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Admin::create([
+        $admin = Admin::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $admin->sendEmailVerificationNotification();
+
+        return $admin;
+
     }
 
     public function showRegisterationForm()
@@ -79,34 +86,33 @@ class RegisterController extends Controller
     }
 
 
-    public function register(Request $req){
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
 
-        $validator = Validator::make($req->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $admin = $this->create($request->all());
 
-        if ($validator->fails()) {
-            $message = $validator->errors();
-            $this->SetStatusCode(404);
-            return $this->RespondWithError($message);
-        }
-        
-        $user = $this->create($req->all());
-        
-        // $user->notify((new AdminRegistered($user->email))->delay( now()->addSeconds(4) ));
+        $this->guard()->login($admin);
 
-        // if($user)
-        // {
-        //     return response()->json([
-        //         'success' => 'Registeration completed.'
-        //     ], 201);
-        // }
-        if($user){
-            return redirect()->route('admin.login')->with('success', 'Successful.');
-        } 
-        // return redirect('/')->with('success', 'Please click the button below to verify your email address.');
+
+        return $this->registered($request, $admin)
+                        ?: view('admin.verify');
     }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }  
 
 }

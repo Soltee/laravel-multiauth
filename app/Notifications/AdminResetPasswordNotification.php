@@ -3,26 +3,23 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class AdminRegistered extends Notification
+class AdminResetPasswordNotification extends Notification
 {
     use Queueable;
-    public $email;
+    public $token;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($token)
     {
-        $this->email = $email;
+        $this->token = $token;
     }
 
     /**
@@ -44,12 +41,12 @@ class AdminRegistered extends Notification
      */
     public function toMail($notifiable)
     {
-        $verifyemail = URL::temporarySignedRoute(
-            'verify.admin',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-            ['id' => $notifiable->getKey()]
-        );
-        return (new MailMessage)->markdown('mail.register.admin', ['email' => $this->email, 'verifyemail' => $verifyemail]);
+        return (new MailMessage)
+            ->subject(Lang::getFromJson('Reset Password Notification'))
+            ->line(Lang::getFromJson('You are receiving this email because we received a password reset request for your account.'))
+            ->action(Lang::getFromJson('Admin Reset Password'), url(config('app.url').route('admin.password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
+            ->line(Lang::getFromJson('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.users.expire')]))
+            ->line(Lang::getFromJson('If you did not request a password reset, no further action is required.'));
     }
 
     /**
