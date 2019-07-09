@@ -5,6 +5,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Test
+Route::get('test/register', 'TestController@showRegisterationForm')->name('test.register.view');
+Route::post('test/register', 'TestController@register')->name('test.register');
+Route::get('test/verify/{email}', 'TestController@showVerify')->name('test.register.verify');
+Route::get('test/{email}/{token}', 'TestController@getVerify')->name('test.verification.resent');
+Route::post('test/{email}/{token}', 'TestController@resendVerify')->name('test.verification.resent');
+
+
 
 //Admin
 Route::get('admin/register', 'Admin\RegisterController@showRegisterationForm')->name('admin.register.view');
@@ -30,6 +38,7 @@ Route::get('admin/email/verify/{id}', 'Admin\VerificationController@verify')->na
 Route::get('admin/email/resend', 'Admin\VerificationController@resend')->name('admin.verification.resend');
 
 Route::get('home', 'HomeController@index')->name('home');
+Route::get('test/home', 'TestController@home')->name('test.home');
 
 
 Route::get('admin/home', 'AdminController@index')->name('admin.home')->middleware('verified');;
