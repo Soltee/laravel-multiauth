@@ -1,9 +1,7 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 //Test
 Route::get('test/register', 'TestController@showRegisterationForm')->name('test.register.view');
