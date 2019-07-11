@@ -3,7 +3,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 //Test
 Route::get('test/register', 'TestController@showRegisterationForm')->name('test.register.view');

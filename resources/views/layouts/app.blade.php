@@ -15,18 +15,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" class="bg-teal-800 text-white">
-        <nav class="container mx-auto p-2">
-            <div class="flex sm:inline-flex md:block lg:hidden xl:flex">
+    <div id="app" class="text-white">
+        <nav class="nav-h w-screen mx-auto border-b-2 border-white ">
+            <div class="flex sm:inline-flex md:block  xl:flex p-6 pl-10 pr-10">
                 <a class="flex-auto" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    LARA-AUTH
                 </a>
                 
 
+                @if(Auth::guard('admin')->check())
                 <div class="flex-intial">
-                    
+
                     <a class="" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -38,10 +40,15 @@
                     </form>
                                
                 </div>
+                @else 
+
+
+
+                @endif
             </div>
         </nav>
 
-        <main class="container">
+        <main class="container body">
             @yield('content')
         </main>
     </div>

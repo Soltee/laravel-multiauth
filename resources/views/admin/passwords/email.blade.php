@@ -1,47 +1,57 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Admin Reset Password') }}</div>
+<div class="w-screen mx-auto my-auto">
+    
 
-                <div class="card-body">
-                    @if (session('status'))
+    <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
+        <div class="text-lg font-bold">
+            {{ __('Admin Reset Password') }}
+        </div>
+    </div>
+
+    <div class=" mx-auto mt-6">
+         @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+        @endif
+        <form method="POST" action="{{ route('admin.password.email.send') }}">
+             @csrf
 
-                    <form method="POST" action="{{ route('admin.password.email.send') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+              <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="emails">
+                {{ __('E-Mail Address') }}
+              </label>
+              <input class="@error('email') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="*******@gmail.com">
+              @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                @enderror
             </div>
-        </div>
+
+            
+           <div class="flex justify-between mx-auto my-4 mt-4 mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-6 mr-2 rounded">
+                      {{ __('Send Link') }}
+
+                </button>
+
+                <a class="" href="{{ route('admin.login') }}">
+                    <button class="bg-transparent  text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-white-600 rounded">                    
+                        {{ __('Not Now ?') }}
+                    </button>
+                </a>
+                
+            </div>
+
+
+        </form>
     </div>
+        
 </div>
+
+
+                    
 @endsection
