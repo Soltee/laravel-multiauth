@@ -46,14 +46,9 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        // foreach ($this->guard()->user()->role as $role) {
-        //     if($role->name == 'admin')
-        //     {
-                return redirect('admin/home')->with('success', 'You are logged in.');
-        //     } elseif ($role->name == "editor") {
-        //         return redirect('editor/home');
-        //     }
-        // }
+       
+         return redirect('admin/home')->with('success', 'You are logged in.');
+        
     }
 
     public function showLoginForm(){

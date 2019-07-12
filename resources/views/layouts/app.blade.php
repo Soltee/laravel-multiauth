@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'LARA-AUTH') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,14 +19,15 @@
 </head>
 <body>
     <div id="app" class="text-white">
-        <nav class="nav-h w-screen mx-auto border-b-2 border-white ">
-            <div class="flex sm:inline-flex md:block  xl:flex p-6 pl-10 pr-10">
-                <a class="flex-auto" href="{{ url('/') }}">
-                    LARA-AUTH
+        <nav class="nav-h w-screen mx-auto border-b-2 border-white">
+            <div class="flex justify-between p-6 pl-10 pr-10">
+                <a class="flex" href="{{ url('/') }}">
+                    <img class="logo-sm" src="{{ asset('svgs/laravel.svg') }}"/> LARA-AUTH
                 </a>
                 
 
-                @if(Auth::guard('admin')->check())
+                @auth
+                
                 <div class="flex-intial">
 
                     <a class="" href="{{ route('logout') }}"
@@ -40,20 +41,35 @@
                     </form>
                                
                 </div>
-                @else 
+                @endauth
 
-
-
-                @endif
             </div>
         </nav>
+        
 
         <main class="container body">
-            @yield('content')
+            <div class="ml-auto">
+              @include('inc.messages') 
+            </div>
+            <div>   
+                @yield('content')
+            </div>  
         </main>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function(){
+            let messages = document.querySelectorAll('cross');
+
+            setTimeout(function(){
+                messages.forEach(function(mge){
+                    mge.style.opacity = 0;
+                    mge.style.visibility = hidden;
+                });
+            }, 2000);
+        });
+    </script>
 </body>
 </html>

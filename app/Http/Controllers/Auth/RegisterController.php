@@ -73,29 +73,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function register(Request $req){
-
-        $data = $req->validate([
-            'name' => 'required|string|unique:admins',
-            'email' => 'required|email|unique:admins',
-            'password' => 'required|string|min:8',
-            'repassword' => 'required|string',
-
-        ]);
-        
-        $user = Admin::create($data);
-        
-        $user->notify((new AdminRegistered($user->email))->delay( now()->addSeconds(4) ));
-
-        if($user)
-        {
-            return response()->json([
-                'success' => 'Registeration completed.'
-            ], 201);
-        }
-        // if($user){
-        //     return redirect()->route('verify.admin')->with('success', 'Please click the button below to verify your email address.');
-        // } 
-        // return redirect('/')->with('success', 'Please click the button below to verify your email address.');
-    }
 }

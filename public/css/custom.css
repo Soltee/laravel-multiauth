@@ -1,6 +1,12 @@
 #app {
 	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+.logo-sm{
+	width: 25spx;
+	height: 25px;
+	padding-right: 6px;
+}
+
 .nav-h{
 	height: 12vh;
 }

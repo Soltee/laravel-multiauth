@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-screen mx-auto my-auto">
+<div class="text-center w-screen mx-auto my-auto">
     
 
-    <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
-        <div class="text-lg font-bold">
+    <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
+        <div class="text-lg mt-8 font-black border-b-2 border-white">
             {{ __('Verify Your Email Address') }}
         </div>
         
     </div>
 
-    <div class=" mx-auto mt-6">
+    <div class="align-center mx-auto mt-8 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
         
             @if (session('resent'))
                 <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4" role="alert">
@@ -19,12 +19,17 @@
                 </div>
             @endif
             
-            {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }}, <a href="{{ route('admin.verification.resend') }}">{{ __('click here to request another') }}</a>.
+            <p>{{ __('Before proceeding, please check your email for a verification link.') }}</p>
+            <p>{{ __('If you did not receive the email') }},</p>
+
+            <a class="font-bold " href="{{ route('admin.verification.resend') }}">
+                <button class="mt-6 rounded-full w-40 text-white bg-blue-700 px-2 py-2 hover:bg-blue-500">
+                    {{ __('Click here') }}
+                </button>
+            </a>
+            
     </div>
         
 </div>
 
-     
-@endsection
 

@@ -6,10 +6,7 @@
 
     <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
         <div class="text-lg font-bold">
-            {{ __(' Login') }}
-        </div>
-         <div class="text-lg font-bold">
-            {{ __(' Register') }}
+            {{ __('Admin Login') }}
         </div>
     </div>
 

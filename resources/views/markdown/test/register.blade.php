@@ -1,6 +1,6 @@
 @component('mail::message')
 
-#Email Verification Message
+# Email Verification Message
 
 
 You are recieving this email inorder to verify your email address. 
