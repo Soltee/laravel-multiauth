@@ -59,17 +59,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function(){
-            let messages = document.querySelectorAll('cross');
+    <!-- <script src="{{ asset('js/chart.min.js') }}"></script> -->    
+<!--     <script src="{{ asset('js/frappe.min.js') }}"></script>
+ -->    <script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"></script>
+    {!! $usersChart->script() !!}
 
-            setTimeout(function(){
-                messages.forEach(function(mge){
-                    mge.style.opacity = 0;
-                    mge.style.visibility = hidden;
-                });
-            }, 2000);
-        });
-    </script>
 </body>
 </html>
