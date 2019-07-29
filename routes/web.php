@@ -4,8 +4,6 @@
 Route::get('/', 'WelcomeController@index')->name('welcome');
 
 
-
-
 //Admin
 Route::get('admin/register', 'Admin\RegisterController@showRegisterationForm')->name('admin.register.view');
 Route::post('admin/register', 'Admin\RegisterController@register')->name('admin.register');

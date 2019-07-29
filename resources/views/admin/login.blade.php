@@ -10,6 +10,22 @@
         </div>
     </div>
 
+    <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 ">
+        <p class="font-sm">
+            New Here? 
+            <a class="ml-2" href="{{ route('admin.register.view') }}"> 
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 mr-2 rounded">
+
+                    {{ __('Register Admin') }}
+
+                </button>
+            </a>
+
+            
+        </p>
+         
+    </div>
+
     <div class=" mx-auto mt-6">
         <form method="POST" action="{{ route('admin.login') }}">
             @csrf
