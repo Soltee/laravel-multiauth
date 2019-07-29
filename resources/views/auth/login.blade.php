@@ -8,9 +8,7 @@
         <div class="text-lg font-bold">
             {{ __('User Login') }}
         </div>
-         <!-- <div class="text-lg font-bold">
-            {{ __(' Register') }}
-        </div> -->
+         
     </div>
 
     <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 ">
@@ -37,10 +35,11 @@
                 {{ __('E-Mail Address') }}
               </label>
               <input class="@error('email') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="*******@gmail.com">
+             
               @error('email')
-                        <span class="invalid-feedback" role="alert">
+                        <p class="mt-6 p-2 border-2 border-red-800 rounded" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </p>
                 @enderror
             </div>
 
@@ -50,10 +49,10 @@
                 {{ __('Password') }}
               </label>
               <input class="@error('password') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus placeholder="**********">
-              @error('password')
-                        <span class="invalid-feedback" role="alert">
+               @error('password')
+                        <p class="mt-6 p-2 border-2 border-red-800 rounded" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </p>
                 @enderror
             </div>
 

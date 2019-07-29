@@ -13,9 +13,13 @@
     
     <div class="px-3 py-4 flex flex-col justify-center">
 
-            {!! $usersChart->container() !!}           
+        {!! $usersChart->container() !!}           
         
     </div>
 </div>
 	
+@endsection
+
+@section('scripts')
+	{!! $usersChart->script() !!}
 @endsection

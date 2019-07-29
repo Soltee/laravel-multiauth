@@ -21,9 +21,9 @@
               </label>
               <input class="@error('name') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="*******">
               @error('name')
-                        <span class="invalid-feedback" role="alert">
+                    <p class="mt-6 p-2 border-2 border-red-800 rounded" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                      </p>
                 @enderror
             </div>         
 
@@ -33,9 +33,9 @@
               </label>
               <input class="@error('email') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="*******@gmail.com">
               @error('email')
-                        <span class="invalid-feedback" role="alert">
+                    <p class="mt-6 p-2 border-2 border-red-800 rounded" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </p>
                 @enderror
             </div>
 
@@ -46,9 +46,9 @@
               </label>
               <input class="@error('password') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus placeholder="**********">
               @error('password')
-                        <span class="invalid-feedback" role="alert">
+                    <p class="mt-6 p-2 border-2 border-red-800 rounded" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </p>
                 @enderror
             </div>
 

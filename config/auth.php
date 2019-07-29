@@ -44,10 +44,6 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'test' => [
-            'driver' => 'session',
-            'provider' => 'tests',
-        ],
 
         'api' => [
             'driver' => 'token',
@@ -82,10 +78,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
-        'tests' => [
-            'driver' => 'eloquent',
-            'model' => App\Test::class,
-        ],
+        
 
         // 'users' => [
         //     'driver' => 'database',
@@ -119,11 +112,7 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'tests' => [
-            'provider' => 'tests',
-            'table' => 'password_resets',
-            'expire' => 15,
-        ],
+       
     ],
 
 ];
