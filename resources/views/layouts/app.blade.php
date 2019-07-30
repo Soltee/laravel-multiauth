@@ -59,10 +59,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <!-- <script src="{{ asset('js/chart.min.js') }}"></script> -->    
-    <script src="{{ asset('js/frappe.min.js') }}"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"></script> -->
-    @yield('scripts')
+
 
 </body>
 </html>
