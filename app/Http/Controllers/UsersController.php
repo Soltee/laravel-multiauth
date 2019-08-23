@@ -3,57 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
-class AdminController extends Controller
+class UsersController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-        $this->middleware('verified');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function search()
     {
+        $query = request('search');
+
+        $users_search = User::where('name', 'LIKE', '%'. $query.'%')->get(); 
+
+
         $users = User::latest()->paginate(10);
         $total = User::all()->count();
         $paginate = $users->count();
-        $users_search = '';
 
         return view('admin.home', compact('users', 'total', 'paginate', 'users_search'));
     }
-
     /**
-     * Show the profile update view
+     * Update the specified resource in storage.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-        $auth = auth('admin')->user();
-
-        return view('admin.profile', compact('auth'));
-    }
-
-
-    /**
-     * update admin profile
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, User $user)
     {
         $data = $request->validate([
             'name' => 'required|string',
@@ -66,7 +41,7 @@ class AdminController extends Controller
             $image = $request->file('avatar');
             $basename = Str::random();
             $original = $basename . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('/public/admins', $original);
+            $image->storeAs('/public/users', $original);
 
             $imagearray = ['avatar' => $original];
         }
@@ -78,6 +53,23 @@ class AdminController extends Controller
             'password' => bcrypt($data['password'])
         ], $imagearray ?? []));
 
-        return redirect()->route('admin.profile')->with('success', 'Profile updated.');
+        return redirect()->route('profile')->with('success', 'Profile updated.');
+    }
+
+    public function show(User $user)
+    {
+        return view('show', compact('user'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('admin.home')->with('success', 'User removed.');
     }
 }

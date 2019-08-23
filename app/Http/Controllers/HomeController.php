@@ -26,4 +26,13 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /*
+     * Renders Edit profile view
+     */
+    public function profile()
+    {
+        $auth = auth()->user();
+        return view('profile', compact('auth'));
+    }
 }

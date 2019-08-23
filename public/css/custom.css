@@ -1,26 +1,9 @@
 #app {
 	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
-.logo-sm{
-	width: 25spx;
-	height: 25px;
-	padding-right: 6px;
+.h-100{
+	height: 100vh;
 }
-
-.nav-h{
-	height: 12vh;
-}
-/* Welcome Page*/
-
-.body{
-	height:88vh;
-	
-}
-.banner-div{
-	transform: translateY(25%);
-	box-sizing: border-box;
-}
-
 .text-elg{
 	font-size: 20px;
 }
