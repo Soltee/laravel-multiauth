@@ -5,21 +5,19 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+
 class UsersController extends Controller
 {
 
-    public function search()
+    public function search($user)
     {
-        $query = request('search');
+        // $query = request('search');
 
-        $users_search = User::where('name', 'LIKE', '%'. $query.'%')->get(); 
+        $users_search = User::where('name', 'LIKE', ''. $user . '%')->get(); 
 
-
-        $users = User::latest()->paginate(10);
-        $total = User::all()->count();
-        $paginate = $users->count();
-
-        return view('admin.home', compact('users', 'total', 'paginate', 'users_search'));
+        return response()->json(['users' => $users_search , 'key' => $user]);
+        
     }
     /**
      * Update the specified resource in storage.
@@ -43,7 +41,7 @@ class UsersController extends Controller
             $original = $basename . '.' . $image->getClientOriginalExtension();
             $image->storeAs('/public/users', $original);
 
-            $imagearray = ['avatar' => $original];
+            $imagearray = ['avatar' => 'users/'.$original];
         }
 
 
@@ -58,7 +56,9 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('show', compact('user'));
+        return response()->json(['user' => $user], 200);
+
+        // return view('show', compact('user'));
     }
 
     /**
@@ -69,7 +69,11 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        if($user->avatar)
+        {
+            File::delete('http://localhost:8000/storage/users/{$user->avatar}');
+        }
         $user->delete();
-        return redirect()->route('admin.home')->with('success', 'User removed.');
+        return response()->json(['user' => $user], 200);
     }
 }

@@ -34,13 +34,13 @@ Route::get('home', 'HomeController@index')->name('home');
 //Users
 Route::get('/profile', 'HomeController@profile')->name('profile')->middleware('auth');
 Route::post('/user/{user}/update', 'UsersController@update')->name('profile.update')->middleware('auth');
-Route::delete('/user/{user}/delete', 'UsersController@destroy')->name('user.profile.delete')->middleware('auth:admin');
+Route::post('/user/{user}/delete', 'UsersController@destroy')->name('user.profile.delete')->middleware('auth:admin');
 
 //Admin
 Route::get('admin/home', 'AdminController@index')->name('admin.home')->middleware('verified');
 Route::get('/admin/profile', 'AdminController@show')->name('admin.profile');
 Route::post('/admin/{admin}/update', 'AdminController@update')->name('admin.profile.update');
 
-Route::get('/search', 'UsersController@search')->name('user.search')->middleware('auth:admin');
+Route::get('/search/{user}', 'UsersController@search')->name('user.search')->middleware('auth:admin');
 Route::get('/user/{user}', 'UsersController@show')->name('user.show')->middleware('auth:admin');
 
