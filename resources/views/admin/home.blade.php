@@ -3,13 +3,14 @@
 @section('content')
 
         
-<div class="w-screen lg:px-12 flex flex-row align-center text-gray-900 bg-gray-200">
+<div class="py-4 px-4 md:px-12 lg:px-16 flex flex-col min-h-screen">
 
-  <div class="flex flex-col align-center px-4">
+  @include('inc.nav')
+  <!-- <div class="flex flex-col align-center px-4">
     
     <div class="flex flex-row justify-between items-center">
       <div class="flex flex-row">
-        <h1 class="text-3xl  ml-2 text-gray-600 font-medium">
+        <h1 class="text-lg lg:text-3xl  ml-2 text-gray-600 font-medium">
           Users
         </h1>
         <Search></Search>
@@ -45,7 +46,7 @@
           {{ $users->links() }}
         </div>
 
-  </div>
+  </div> -->
 
   
 

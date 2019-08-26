@@ -1,49 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-screen mx-auto my-auto">
-    
+<div class="flex flex-col justify-center min-h-screen">
 
-    <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
-        <div class="text-lg font-bold">
+    <div class="max-w-md mx-auto py-3 px-6 w-full">
+        <div class="text-lg lg:text-2xl font-bold">
             {{ __('Admin Reset Password') }}
         </div>
     </div>
 
-    <div class=" mx-auto mt-6">
-         @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-        @endif
+    <div class="">
         <form method="POST" action="{{ route('admin.password.email.send') }}">
              @csrf
 
-            <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
-              <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="emails">
-                {{ __('E-Mail Address') }}
-              </label>
-              <input class="@error('email') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="*******@gmail.com">
-              @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                @enderror
-            </div>
+            <div class="max-w-md mx-auto py-3 px-6 w-full">
+                <div class="block mb-3">
+                  <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="email">
+                    {{ __('E-Mail Address') }}
+                  </label>
+                  <input class="@error('email') is-invalid @enderror shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="*******@gmail.com">
+                  @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                    @enderror
+                </div>
 
-            
-           <div class="flex justify-between mx-auto my-4 mt-4 mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-6 mr-2 rounded">
-                      {{ __('Send Link') }}
+              
+               <div class="flex flex-col lg:flex-row justify-between mt-4">
+                    <button class="w-full lg:w-auto bg-blue-500  mb-2 hover:bg-blue-700 border-transparent text-white font-bold py-2 px-6 mr-2 rounded">
+                          {{ __('Send Link') }}
 
-                </button>
-
-                <a class="" href="{{ route('admin.login') }}">
-                    <button class="bg-transparent  text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-white-600 rounded">                    
-                        {{ __('Not Now ?') }}
                     </button>
-                </a>
-                
+
+                    <a class="" href="{{ route('admin.login') }}">
+                        <button class="w-full text-center lg:w-auto hover:underline py-2">                    
+                            {{ __('Not Now ?') }}
+                        </button>
+                    </a>
+                    
+                </div>
+
             </div>
 
 

@@ -1,21 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="w-screen mx-auto my-auto">
+<div class="flex flex-col justify-center min-h-screen">
     
 
-    <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
-         <div class="text-lg font-bold">
-            {{ __(' Register') }}
+    <div class="mt-6 max-w-md mx-auto py-3 px-6 w-full">
+         <div class="text-lg lg:text-2xl font-bold">
+            {{ __(' Register Admin') }}
         </div>
     </div>
 
-    <div class=" mx-auto mt-6">
+    <div class="">
         <form method="POST" action="{{ route('admin.register') }}">
-            @csrf
+          @csrf
                         
+          <div class="max-w-md mx-auto py-3 px-6 w-full">
 
-            <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+            <div class="block mb-3">
               <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="name">
                 {{ __('Name') }}
               </label>
@@ -27,7 +28,7 @@
                 @enderror
             </div>         
 
-            <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+            <div class="block mb-3">
               <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="email">
                 {{ __('E-Mail Address') }}
               </label>
@@ -40,7 +41,7 @@
             </div>
 
         
-            <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+            <div class="block mb-3">
               <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="emails">
                 {{ __('Password') }}
               </label>
@@ -53,7 +54,7 @@
             </div>
 
            
-            <div class="mx-auto mb-6 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+            <div class="block mb-3">
               <label class="ml-0 block text-white-700 text-md font-bold mb-2  font-bold   " for="password-confirm">
                 {{ __('Confirm Password') }}
               </label>
@@ -61,16 +62,23 @@
 
             </div>
 
-            <div class="flex justify-between mx-auto my-4 mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0 px-6 mr-2 rounded">
-                      {{ __('Register') }}
 
-                </button>
+            <div class="flex flex-col-reverse lg:flex-row justify-end mt-4">
+                  
 
-                <a class="" href="{{ route('admin.login') }}">
-                    <button class="bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-blue-600 rounded">                    {{ __('Go Back') }}
-                    </button>
-                </a>
+                  <a class="" href="{{ route('admin.login') }}">
+                      <button class="w-full lg:w-auto rounded bg-indigo-800 text-center lg:w-auto hover:bg-indigo-700 py-2 px-6">                    
+                        {{ __('Go Back') }}
+                      </button>
+                  </a>
+
+                  <button class="w-full  lg:ml-2 lg:w-auto bg-blue-500  mb-2 hover:bg-blue-700 text-white font-bold py-2 px-6 mr-2 rounded">
+                        {{ __('Register') }}
+
+                  </button>
+                  
+              </div>
+            
                 
             </div>
 

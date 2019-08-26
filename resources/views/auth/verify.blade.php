@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="text-center w-screen mx-auto my-auto">
+<div class="flex flex-col justify-center min-h-screen">
     
 
-    <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4 pt-10">
+    <div class="max-w-md mx-auto py-3 px-6 w-full">
         <div class="text-lg mt-8 font-black border-b-2 border-white">
             {{ __('Verify Your Email Address') }}
         </div>
         
     </div>
 
-    <div class="align-center mx-auto mt-8 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
+    <div class="max-w-md mx-auto py-3 px-6 w-full">
         
             @if (session('resent'))
-                <div class="mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4" role="alert">
+                <div class="px-2" role="alert">
                     {{ __('A fresh verification link has been sent to your email address.') }}
                 </div>
             @endif
@@ -23,7 +23,7 @@
             <p>{{ __('If you did not receive the email') }},</p>
 
             <a class="font-bold " href="{{ route('verification.resend') }}">
-                <button class="mt-6 rounded-full w-40 text-white bg-blue-700 px-2 py-2 hover:bg-blue-500">
+                <button class="w-full  lg:ml-2 lg:w-auto bg-blue-500  mb-2 hover:bg-blue-700 text-white font-bold py-2 px-6 mr-2 rounded">
                     {{ __('Click here') }}
                 </button>
             </a>

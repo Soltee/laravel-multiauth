@@ -2,9 +2,12 @@
 
 @section('content')
 
-<div class="max-w-md mx-auto mt-4">
-  <form method="POST" action="{{ route('admin.profile.update', $auth->id) }}" enctype="multipart/form-data">
-            @csrf
+<div class="py-4 px-4 md:px-12 lg:px-16 flex flex-col min-h-screen">
+    @include('inc.nav')
+
+    <form method="POST" action="{{ route('admin.profile.update', $auth->id) }}" enctype="multipart/form-data">
+        @csrf
+        <div class="max-w-lg mt-24  mx-auto py-3 px-6 w-full">
             <div class="flex flex-col mb-6">
                  <div class="flex flex-row justify-between items-baseline">
                     <h3 class="text-white font-semibold text-lg">Update Admin Profile</h3>
@@ -15,14 +18,14 @@
             </div>
             <div class="flex flex-col">
                 
-                <div class="max-w-md mb-6 flex flex-col">
+                <div class="w-full">
                     
                     <div class="flex justify-between items-baseline border rounded border-gray-400">
-                      <input id="avatar" type="file" class="shadow appearance-none  w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:shadow-outline" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar" placeholder="" autofocus>
+                        <input id="avatar" type="file" class="shadow appearance-none  w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline focus:shadow-outline" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar" placeholder="" autofocus>
                       <label for="avatar" class="block mr-2 text-white-700 text-md mb-3 font-semibold">{{ __('Avatar') }}</label>
                     </div>
                     @if($auth->avatar)
-                      <img class="h-40 w-full object-cover object-top" src="{{ asset('storage/admins/'. $auth->avatar) }}">
+                        <img class="h-40 w-full object-cover object-top" src="{{ asset('storage/admins/'. $auth->avatar) }}">
                     @endif
 
                     @error('avatar')
@@ -34,7 +37,7 @@
 
                 
 
-                <div class="max-w-md mb-6">
+                <div class="block mb-3">
                     <label for="name" class="block text-white-700 text-md mb-3 font-semibold">{{ __('Name') }}</label>
 
                     <div class="col-md-6">
@@ -48,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="max-w-md mb-6">
+                <div class="block mb-3">
                     <label for="email" class="block text-white-700 text-md mb-3 font-semibold">{{ __('Email') }}</label>
 
                     <div class="col-md-6">
@@ -63,7 +66,7 @@
                 </div>
 
 
-                <div class="max-w-md mb-6">
+                <div class="block mb-3">
                     <label for="password" class="block text-white-700 text-md mb-3 font-semibold">{{ __('Password') }}</label>
 
                     <div class="col-md-6">
@@ -77,7 +80,7 @@
                     </div>
                 </div>
 
-                 <div class="max-w-md mb-6">
+                <div class="block mb-3">
                     <label for="confirm" class="block text-white-700 text-md mb-3 font-semibold">{{ __('Confirm Password') }}</label>
 
                     <div class="col-md-6">
@@ -92,7 +95,8 @@
                 </div>
             </div>
 
-        </form>
+        </div>
+    </form>
 
 </div>
 @endsection
