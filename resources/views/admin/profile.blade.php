@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="py-4 px-4 md:px-12 lg:px-16 flex flex-col min-h-screen">
+<div class="py-2 px-4 md:px-12 lg:px-16 flex flex-col min-h-screen">
     @include('inc.nav')
 
     <form method="POST" action="{{ route('admin.profile.update', $auth->id) }}" enctype="multipart/form-data">
         @csrf
-        <div class="max-w-lg mt-24  mx-auto py-3 px-6 w-full">
+        <div class="max-w-lg   mx-auto py-3 px-6 w-full">
             <div class="flex flex-col mb-6">
                  <div class="flex flex-row justify-between items-baseline">
                     <h3 class="text-white font-semibold text-lg">Update Admin Profile</h3>

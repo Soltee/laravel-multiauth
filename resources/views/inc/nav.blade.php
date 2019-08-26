@@ -1,4 +1,4 @@
-<div class="mt-16 fixed w-full z-10  border-white">
+<div class="mt-16 w-full z-0  border-white">
     <ul class="m-0 p-0 flex flex-row">
       <li class="">
         <a class="mr-4 inline-flex px-2 py-2  font-bold border-b-2  border-transparent hover:border-white {{ Route::currentRouteName() == 'admin.home' ? 'border-white' : '' }}" href="{{ route('admin.home') }}">

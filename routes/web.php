@@ -41,6 +41,6 @@ Route::get('admin/home', 'AdminController@index')->name('admin.home')->middlewar
 Route::get('/admin/profile', 'AdminController@show')->name('admin.profile');
 Route::post('/admin/{admin}/update', 'AdminController@update')->name('admin.profile.update');
 
-Route::get('/search/{user}', 'UsersController@search')->name('user.search')->middleware('auth:admin');
+Route::get('/search', 'UsersController@search')->name('user.search')->middleware('auth:admin');
 Route::get('/user/{user}', 'UsersController@show')->name('user.show')->middleware('auth:admin');
 

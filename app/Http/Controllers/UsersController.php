@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\File;
 class UsersController extends Controller
 {
 
-    public function search($user)
+    public function search()
     {
-        // $query = request('search');
+        $query = request('search');
 
-        $users_search = User::where('name', 'LIKE', ''. $user . '%')->get(); 
-
-        return response()->json(['users' => $users_search , 'key' => $user]);
+        $users_search = User::where('name', 'LIKE', ''. $query . '%')->get(); 
+        $total = $users_search->count();
+        return view('admin.search', compact('users_search', 'total'));
         
     }
     /**
@@ -56,9 +56,7 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return response()->json(['user' => $user], 200);
-
-        // return view('show', compact('user'));
+        return view('admin.show', compact('user'));
     }
 
     /**
@@ -71,9 +69,9 @@ class UsersController extends Controller
     {
         if($user->avatar)
         {
-            File::delete('http://localhost:8000/storage/users/{$user->avatar}');
+            File::delete('http://localhost:8000/storage/{$user->avatar}');
         }
         $user->delete();
-        return response()->json(['user' => $user], 200);
+        return redirect()->back()->with('success', 'User removed from the database;');
     }
 }
