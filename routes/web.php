@@ -33,6 +33,7 @@ Route::get('home', 'HomeController@index')->name('home');
 
 //Users
 Route::get('/profile', 'HomeController@profile')->name('profile')->middleware('auth');
+Route::get('/user/{user}', 'UsersController@show')->name('user.show')->middleware('auth:admin');
 Route::post('/user/{user}/update', 'UsersController@update')->name('profile.update')->middleware('auth');
 Route::post('/user/{user}/delete', 'UsersController@destroy')->name('user.profile.delete')->middleware('auth:admin');
 

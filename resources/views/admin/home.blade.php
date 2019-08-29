@@ -3,7 +3,7 @@
 @section('content')
 
         
-<div class="py-2 px-4 md:px-12 lg:px-16 flex flex-col min-h-screen">
+<div class="py-2 px-4 pb-8 md:px-12 lg:px-16 flex flex-col min-h-screen">
 
   @include('inc.nav')
   
@@ -38,13 +38,13 @@
 
 		<tbody class="">
 			@forelse($users as $u)
-					<tr class="cursor-pointer hover:bg-blue-400 rounded-full">
+					<tr class="row-link cursor-pointer hover:bg-blue-400 rounded-full" data-id="{{ $u->id }}">
 						<td>
-							<img  class="m-1 h-12 w-12 rounded-full" src="/storage/users/{{$u->avatar}}">
+							<img  class="m-1 h-12 w-12 rounded-full" src="/storage/users/{{ $user->avatar ? $user->avatar : 'default.jpg' }}">
 						</td>
 						<td><h4 class="m-1">{{ $u->name}}</h4></td>
 						<td><h4 class="m-1">{{ $u->email}}</h4></td>
-						<td><h4 class="m-1">{{ $u->created_at->diffForHumans()}}</h4></td>
+						<td><h4 class="m-1">{{ $u->created_at->diffForHumans() }}</h4></td>
 						<td>
 							<form method="POST" action="{{ route('user.profile.delete', $u->id ) }}">
 								@csrf
@@ -76,4 +76,18 @@
 </div>
 	
 @endsection
-	
+@section('scripts')
+<script>
+	$(document).ready(function(){
+		$(".row-link").each(function(){
+		    var self=$(this);
+		    self.click(function(){
+			    window.location = "http://localhost:8000/user/" + self.data('id');
+		    });
+		    
+		   
+		});
+
+	});
+</script>
+@endsection
