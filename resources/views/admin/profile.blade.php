@@ -7,7 +7,7 @@
 
     <form method="POST" action="{{ route('admin.profile.update', $auth->id) }}" enctype="multipart/form-data">
         @csrf
-        <div class="max-w-lg   mx-auto py-3 px-6 w-full">
+        <div class="md:max-w-lg  mt-3 md:mt-2 lg:mt-0 mx-auto py-3 px-2 md:px-6 w-full">
             <div class="flex flex-col mb-6">
                  <div class="flex flex-row justify-between items-baseline">
                     <h3 class="text-white font-semibold text-lg">Update Admin Profile</h3>

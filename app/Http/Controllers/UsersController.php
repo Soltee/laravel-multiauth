@@ -67,11 +67,22 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+
+        $this->remove($user);
+        if(request('url') == 'home'){
+            return redirect()->back()->with('success', 'User removed from the database;');
+        } else {
+            return redirect()->route('admin.home')->with('success', 'User removed from the database;');
+        }
+    }
+
+    protected function remove($user)
+    {
         if($user->avatar)
         {
             File::delete('http://localhost:8000/storage/{$user->avatar}');
         }
         $user->delete();
-        return redirect()->back()->with('success', 'User removed from the database;');
     }
+
 }

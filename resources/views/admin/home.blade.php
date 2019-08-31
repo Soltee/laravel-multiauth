@@ -8,21 +8,21 @@
   @include('inc.nav')
   
 
-  <div class="mt-6  mx-auto w-full flex jusitfy-between items-center">
+  <div class="mt-6  md:mx-auto w-full flex flex-col md:flex-row  md:jusitfy-between md:items-center">
 
   	<div class="flex jusitfy-center items-center">
   		<h3 class="text-lg lg:text-2xl font-semibold mr-2 border-r-2 border-white px-2 text-left">Users</h3>
   		<form class="" method="GET" action="{{ route('user.search') }}">
   			@csrf
-  			<div class="relative flex">
-  				<input  type="text" name="search" class=" block  lg:w-48 md:w-48 text-gray-700 rounded-full px-4 py-1 pr-10" value="{{ request()->input('search') }}">
+  			<div class="relative flex ">
+  				<input  type="text" name="search" class=" block  lg:w-48 w-40 md:w-full text-gray-700 rounded-full px-4 py-1 pr-10 " value="{{ request()->input('search') }}">
 				<button type="submit" class="absolute right-0 ">
 					<svg  class="hover:text-gray-600 mr-1 h-8 w-8 text-gray-700 pr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
 				</button>
   			</div>
   		</form>
   	</div>
-  	<div class="ml-auto">
+  	<div class="mt-6 md:ml-auto">
   		<span class="text-md font-semibold px-2 py-1 border-white border-2 rounded-lg">10 out of {{ $total }}</span>
   	</div>
   </div>
@@ -31,8 +31,8 @@
 		<thead>
 			<th class="m-1 pb-4 pr-2 ">Avatar</th>
 			<th class="m-1 pb-4">Name</th>
-			<th class="m-1 pb-4 ">Email</th>
-			<th class="m-1 pb-4 ">Created_at</th>
+			<th class="m-1 pb-4 hidden">Email</th>
+			<th class="m-1 pb-4 hidden lg:inline-block">Created_at</th>
 			<th class="m-1 pb-4 ">Action</th>
 		</thead>
 
@@ -40,14 +40,16 @@
 			@forelse($users as $u)
 					<tr class="row-link cursor-pointer hover:bg-blue-400 rounded-full" data-id="{{ $u->id }}">
 						<td>
-							<img  class="m-1 h-12 w-12 rounded-full" src="/storage/users/{{ $user->avatar ? $user->avatar : 'default.jpg' }}">
+							<img  class="m-1 h-12 w-12 rounded-full" src="/storage/users/{{ $u->avatar ? $u->avatar : 'default.jpg' }}">
 						</td>
 						<td><h4 class="m-1">{{ $u->name}}</h4></td>
-						<td><h4 class="m-1">{{ $u->email}}</h4></td>
-						<td><h4 class="m-1">{{ $u->created_at->diffForHumans() }}</h4></td>
+						<td class="hidden"><h4 class="m-1 ">{{ $u->email}}</h4></td>
+						<td class="hidden lg:inline-block"><h4 class="m-1">{{ $u->created_at->diffForHumans() }}</h4></td>
 						<td>
 							<form method="POST" action="{{ route('user.profile.delete', $u->id ) }}">
 								@csrf
+								<input type="hidden" name="url" value="home"/>
+
 								<button type="submit">
 									<svg class="h-8 w-8 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
 								</button>
