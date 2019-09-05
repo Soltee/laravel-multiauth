@@ -25,7 +25,7 @@
 	   	@else
             <div class="max-w-xs flex justify-between mx-auto py-3 px-6 w-full">
 		    	<a class="pr-2" href="{{ route('login') }}">
-		    		<button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-full">
+		    		<button class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-full">
 					    {{ __('User Login') }}
 					</button>
 		        </a>

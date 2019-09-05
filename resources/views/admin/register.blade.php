@@ -67,12 +67,12 @@
                   
 
                   <a class="" href="{{ route('admin.login') }}">
-                      <button class="w-full lg:w-auto rounded bg-indigo-800 text-center lg:w-auto hover:bg-indigo-700 py-2 px-6">                    
+                      <button class="w-full lg:w-auto rounded bg-gray-300 text-center text-green-800 font-semibold lg:w-auto hover:bg-gray-200 py-2 px-6">                    
                         {{ __('Go Back') }}
                       </button>
                   </a>
 
-                  <button class="w-full  lg:ml-2 lg:w-auto bg-blue-500  mb-2 hover:bg-blue-700 text-white font-bold py-2 px-6 mr-2 rounded">
+                  <button class="w-full  lg:ml-2 lg:w-auto bg-green-500  mb-2 hover:bg-green-400 text-white font-bold py-2 px-6 mr-2 rounded">
                         {{ __('Register') }}
 
                   </button>

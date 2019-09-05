@@ -23,7 +23,8 @@
   		</form>
   	</div>
   	<div class="mt-6 md:ml-auto">
-  		<span class="text-md font-semibold px-2 py-1 border-white border-2 rounded-lg">{{ $total }}</span>
+  		<span class="text-md font-semibold px-2 py-1 ">
+  			<span class="{{ ($total) ? 'border-green-500 text-green-500' : '' }} font-semibold border-2 rounded-lg p-1 ">{{ $total }}</span> found</span>
   	</div>
   </div>
 

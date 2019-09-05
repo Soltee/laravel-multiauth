@@ -11,7 +11,7 @@
             <div class="flex flex-col mb-6">
                  <div class="flex flex-row justify-between items-baseline">
                     <h3 class="text-white font-semibold text-lg">Update Admin Profile</h3>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+                    <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-full">
                       Save
                 </button>
                 </div>

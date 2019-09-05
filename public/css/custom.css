@@ -2,6 +2,13 @@
 	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
+.bg-blue {
+	background-color: rgb(72, 110, 206);
+}
+.bg-green {
+	background-color: rgb(34, 117, 7);
+}
+
 /*table{
 	border-collapse:separate; 
 	border-spacing:10px;

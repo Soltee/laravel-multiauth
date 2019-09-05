@@ -53,7 +53,7 @@
             </div>
 
             <div class="flex justify-between mx-auto mb-4 lg:w-1/4 md:w-1/4 sm:w-2/4 w-3/4">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 mr-2 rounded">
+                <button class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-6 mr-2 rounded">
                       {{ __('Reset Password ') }}
 
                 </button>

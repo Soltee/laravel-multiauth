@@ -28,7 +28,7 @@
 
               
                <div class="flex flex-col lg:flex-row justify-between mt-4">
-                    <button class="w-full lg:w-auto bg-blue-500  mb-2 hover:bg-blue-700 border-transparent text-white font-bold py-2 px-6 mr-2 rounded">
+                    <button class="w-full lg:w-auto bg-green-500  mb-2 hover:bg-green-400 border-transparent text-white font-bold py-2 px-6 mr-2 rounded">
                           {{ __('Send Link') }}
 
                     </button>

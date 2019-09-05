@@ -55,7 +55,7 @@
               </div>
 
               <div class="mt-3">
-                  <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 mr-2 rounded">
+                  <button class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 mr-2 rounded">
                         {{ __('Reset Password  ') }}
 
                   </button>
