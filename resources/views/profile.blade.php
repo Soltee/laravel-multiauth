@@ -1,13 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-md mx-auto mt-4">
+<div class=" px-4  pt-16  md:px-12 lg:px-16 flex flex-col min-h-screen flex flex-col items-center justify-center">
+    <div class="mt-3 w-full z-0  border-white">
+        <ul class="m-0 p-0 flex flex-row">
+          <li class="">
+            <a class="mr-4 inline-flex px-2 py-2  font-bold border-b-2  border-transparent hover:border-white {{ Route::currentRouteName() == 'home' ? 'border-white' : '' }}" href="{{ route('home') }}">
+              <svg class="h-6 w-6 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
+              <span class="ml-1 text-white">Home</span>
+            </a>
+          </li>
+        </ul>
+    </div>
 	<form method="POST" action="{{ route('profile.update', $auth->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col mb-6">
                  <div class="flex flex-row justify-between items-baseline">
                     <h3 class="text-white font-semibold text-lg">Update Profile</h3>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+                    <button class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-6 rounded-full">
 		                  Save
 		            </button>
                 </div>
@@ -21,7 +31,7 @@
                       <label for="avatar" class="block mr-2 text-white-700 text-md mb-3 font-semibold">{{ __('Avatar') }}</label>
                     </div>
                     @if($auth->avatar)
-                      <img class="h-40 w-full object-cover object-top" src="{{ asset('storage/users/'. $auth->avatar) }}">
+                      <img class="h-40 w-full object-cover object-top" src="{{$auth->avatar }}">
                     @endif
 
                     @error('avatar')

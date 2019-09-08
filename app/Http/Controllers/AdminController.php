@@ -6,6 +6,7 @@ use App\User;
 use App\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use JD\Cloudder\Facades\Cloudder;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,6 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->middleware('verified');
     }
 
     /**
@@ -63,12 +63,18 @@ class AdminController extends Controller
 
         if($request->hasFile('avatar'))
         {
-            $image = $request->file('avatar');
-            $basename = Str::random();
-            $original = $basename . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('/public/admins', $original);
+            Cloudder::upload($request->file('avatar'), null,  
+            [
+                "folder" => "multiauth/admins/"
+            ],  []);
 
-            $imagearray = ['avatar' => $original];
+            $c = Cloudder::getResult();
+            // $image = $request->file('avatar');
+            // $basename = Str::random();
+            // $original = $basename . '.' . $image->getClientOriginalExtension();
+            // $image->storeAs('/public/admins', $original);
+
+            $imagearray = ['avatar' => $c['url']];
         }
 
 

@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use JD\Cloudder\Facades\Cloudder;
 
 class UsersController extends Controller
 {
@@ -36,12 +37,18 @@ class UsersController extends Controller
 
         if($request->hasFile('avatar'))
         {
-            $image = $request->file('avatar');
-            $basename = Str::random();
-            $original = $basename . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('/public/users', $original);
+            // $image = $request->file('avatar');
+            // $basename = Str::random();
+            // $original = $basename . '.' . $image->getClientOriginalExtension();
+            // $image->storeAs('/public/users', $original);
 
-            $imagearray = ['avatar' => 'users/'.$original];
+            Cloudder::upload($request->file('avatar'), null,  
+            [
+                "folder" => "multiauth/users/"
+            ],  []);
+
+            $c = Cloudder::getResult();
+            $imagearray = ['avatar' => $c['url']];
         }
 
 

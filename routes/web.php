@@ -20,7 +20,7 @@ Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showRe
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset')->name('admin.password.update');
 
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 //Admin EMaail veify
 Route::get('admin/email/verify', 'Admin\VerificationController@show')->name('admin.verification.notice');

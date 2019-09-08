@@ -46,30 +46,30 @@ class VerificationController extends Controller
     /*
         * Send Email For Verifying
     */
-    public function show(Request $request)
-    {   
-        return ($request->user()->hasVerifiedEmail()) 
-                ? (redirect('admin/home')->with('success', 'Welcome'))
+    // public function show(Request $request)
+    // {   
+    //     return ($request->user()->hasVerifiedEmail()) 
+    //             ? (redirect('admin/home')->with('success', 'Welcome'))
                                             
-                : view('admin.verify');
-    }
+    //             : view('admin.verify');
+    // }
 
-    public function verify(Request $request)
-    {
-        if ($request->route('id') != $request->user()->getKey()) {
-            throw new AuthorizationException;
-        }
+    // public function verify(Request $request)
+    // {
+    //     if ($request->route('id') != $request->user()->getKey()) {
+    //         throw new AuthorizationException;
+    //     }
 
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect($this->redirectPath());
-        }
+    //     if ($request->user()->hasVerifiedEmail()) {
+    //         return redirect($this->redirectPath());
+    //     }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
+    //     if ($request->user()->markEmailAsVerified()) {
+    //         event(new Verified($request->user()));
+    //     }
 
-        return redirect($this->redirectPath())->with('verified', true);
-    }
+    //     return redirect($this->redirectPath())->with('verified', true);
+    // }
 
     /**
      * Resend the email verification notification.
@@ -77,16 +77,16 @@ class VerificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function resend(Request $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect($this->redirectPath());
-        }
+    // public function resend(Request $request)
+    // {
+    //     if ($request->user()->hasVerifiedEmail()) {
+    //         return redirect($this->redirectPath());
+    //     }
 
-        $request->user()->sendEmailVerificationNotification();
+    //     $request->user()->sendEmailVerificationNotification();
 
-        return back()->with('resent', true);
-    }
+    //     return back()->with('resent', true);
+    // }
 
     /**
      * Get the guard to be used during registration.

@@ -8,9 +8,14 @@
          <div class="text-lg lg:text-2xl mb-3 font-bold">
             {{ __('Admin Login') }}
         </div>
-        <a class="text-lg w-full text-center lg:w-auto hover:underline py-2" href="{{ route('admin.register.view') }}">
-            {{ __('Register Admin') }}
-        </a>
+        <div class="flex flex-row items-baseline justify-left">
+            <label class="w-24">Email :</label>
+            <h4>prabin@prabin.com</h4>
+        </div>
+        <div class="flex flex-row items-baseline justify-left">
+            <label class="w-24">Password :</label>
+            <h4>33333333</h4>
+        </div>
          
     </div>
 

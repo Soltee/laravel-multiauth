@@ -11,7 +11,11 @@
   		
 		<div class="w-64">
 
-			<img  class="m-1 w-full h-full rounded-lg" src="/storage/users/{{ $user->avatar ? $user->avatar : 'default.jpg' }}">
+			@if($user->avatar)
+				<img  class="m-1 w-full rounded-full" src="{{ $user->avatar }}">
+			@else
+				<svg class="m-1 w-full rounded-full text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zM7 6v2a3 3 0 1 0 6 0V6a3 3 0 1 0-6 0zm-3.65 8.44a8 8 0 0 0 13.3 0 15.94 15.94 0 0 0-13.3 0z"/></svg>
+			@endif
 		</div>
 
 		<div class="pt-6 lg:pt-0 pl-3 flex flex-col items-left">

@@ -23,7 +23,9 @@
   		</form>
   	</div>
   	<div class="mt-6 md:ml-auto">
-  		<span class="text-md font-semibold px-2 py-1 border-white border-2 rounded-lg">10 out of {{ $total }}</span>
+  		<span class="text-md font-semibold px-2 py-1 border-white border-2 rounded-lg">
+  			{{  ($total > 10) ? '10 out of '.$total : $total.'  out of '.$total }}
+  		</span>
   	</div>
   </div>
 
@@ -40,7 +42,11 @@
 			@forelse($users as $u)
 					<tr class="row-link cursor-pointer hover:bg-blue-400 rounded-full" data-id="{{ $u->id }}">
 						<td>
-							<img  class="m-1 h-12 w-12 rounded-full" src="/storage/users/{{ $u->avatar ? $u->avatar : 'default.jpg' }}">
+							@if($u->avatar)
+								<img  class="m-1 h-12 w-12 rounded-full" src="{{ $u->avatar }}">
+							@else
+								<svg class="m-1 h-12 w-12 rounded-full text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zM7 6v2a3 3 0 1 0 6 0V6a3 3 0 1 0-6 0zm-3.65 8.44a8 8 0 0 0 13.3 0 15.94 15.94 0 0 0-13.3 0z"/></svg>
+							@endif
 						</td>
 						<td><h4 class="m-1">{{ $u->name}}</h4></td>
 						<td class="hidden"><h4 class="m-1 ">{{ $u->email}}</h4></td>

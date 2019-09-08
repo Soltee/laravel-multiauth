@@ -9,7 +9,7 @@ use App\Notifications\AdminResetPasswordNotification;
 use App\Notifications\AdminVerifyEmailNotifiction;
 
 
-class Admin extends Authenticatable implements MustVerifyEmail
+class Admin extends Authenticatable 
 {
     use Notifiable;
 
@@ -40,24 +40,10 @@ class Admin extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Send the email verification notification.
-     *
-     * @return void
-     */
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new AdminVerifyEmailNotifiction);
-    }
     
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new AdminResetPasswordNotification($token));
     }
 
-
-    public function role()
-    {
-        return $this->belongsToMany(Role::class, 'role_admins');
-    }
 }

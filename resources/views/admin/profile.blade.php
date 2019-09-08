@@ -25,7 +25,7 @@
                       <label for="avatar" class="block mr-2 text-white-700 text-md mb-3 font-semibold">{{ __('Avatar') }}</label>
                     </div>
                     @if($auth->avatar)
-                        <img class="h-40 w-full object-cover object-top" src="{{ asset('storage/admins/'. $auth->avatar) }}">
+                        <img class="h-40 w-full object-cover object-top" src="{{ $auth->avatar }}">
                     @endif
 
                     @error('avatar')
