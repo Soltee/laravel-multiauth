@@ -69,11 +69,7 @@ class AdminController extends Controller
             ],  []);
 
             $c = Cloudder::getResult();
-            // $image = $request->file('avatar');
-            // $basename = Str::random();
-            // $original = $basename . '.' . $image->getClientOriginalExtension();
-            // $image->storeAs('/public/admins', $original);
-
+            
             $imagearray = ['avatar' => $c['url']];
         }
 
