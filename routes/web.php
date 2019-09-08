@@ -3,6 +3,7 @@
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 
+Auth::routes();
 
 //Admin
 Route::get('admin/register', 'Admin\RegisterController@showRegisterationForm')->name('admin.register.view');
@@ -19,8 +20,6 @@ Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendAdminRes
 Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 Route::post('admin-password/reset', 'Admin\ResetPasswordController@reset')->name('admin.password.update');
 
-
-Auth::routes();
 
 //Admin EMaail veify
 Route::get('admin/email/verify', 'Admin\VerificationController@show')->name('admin.verification.notice');
