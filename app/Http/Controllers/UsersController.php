@@ -37,11 +37,6 @@ class UsersController extends Controller
 
         if($request->hasFile('avatar'))
         {
-            // $image = $request->file('avatar');
-            // $basename = Str::random();
-            // $original = $basename . '.' . $image->getClientOriginalExtension();
-            // $image->storeAs('/public/users', $original);
-
             Cloudder::upload($request->file('avatar'), null,  
             [
                 "folder" => "multiauth/users/"
