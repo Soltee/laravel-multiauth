@@ -1,7 +1,9 @@
 <?php
 
 
-Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::get('/', function(){
+	return view('welcome');
+})->name('welcome');
 
 Auth::routes();
 
