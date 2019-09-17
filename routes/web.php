@@ -4,7 +4,7 @@
 
 
 Auth::routes();
-Route::get('/', 'WelcomeController@welcome');
+Route::get('/', 'WelcomeController@index');
 
 //Admin
 Route::get('/admin/register', 'Admin\RegisterController@showRegisterationForm')->name('admin.register.view');
