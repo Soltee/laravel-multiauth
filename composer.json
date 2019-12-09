@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "jrm2k6/cloudder": "^0.6.0",
         "laravel/framework": "6.6.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "spatie/laravel-permission": "^3.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

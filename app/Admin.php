@@ -7,11 +7,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\AdminResetPasswordNotification;
 use App\Notifications\AdminVerifyEmailNotifiction;
-
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable 
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
